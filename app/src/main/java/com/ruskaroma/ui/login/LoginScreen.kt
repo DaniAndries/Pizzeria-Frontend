@@ -1,5 +1,6 @@
 package com.ruskaroma.ui.login
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -9,7 +10,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,18 +25,27 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ruskaroma.R
-import com.ruskaroma.ui.registro.FormFields
-import com.ruskaroma.ui.registro.PasswordField
+import com.ruskaroma.data.LoginDTO
+import com.ruskaroma.ui.register.ErrorMessage
+import com.ruskaroma.ui.register.FormFields
+import com.ruskaroma.ui.register.PasswordField
 import com.ruskaroma.ui.theme.RuskaRomaTheme
 
 @Composable
 fun LoginScreen(viewModel: LoginViewModel) {
-    val texto: String by viewModel.text.observeAsState("")
-    LoginForm(texto) { viewModel.onTextChange(it) }
+    val buttonRegisterState: Boolean by viewModel.buttonRegisterState.observeAsState(false)
+    val login: LoginDTO by viewModel.login.observeAsState(LoginDTO())
+    val errorMessage: ErrorMessage by viewModel.errorMessage.observeAsState(ErrorMessage())
+    LoginForm(buttonRegisterState, viewModel, login, errorMessage)
 }
 
 @Composable
-fun LoginForm(texto: String, onTextChange: (String) -> Unit) {
+fun LoginForm(
+    buttonState: Boolean,
+    viewModel: LoginViewModel,
+    login: LoginDTO,
+    errorMessage: ErrorMessage
+) {
     Column(
         modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -53,10 +64,19 @@ fun LoginForm(texto: String, onTextChange: (String) -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-
-
-        Text(text = texto)
-
+        FormFields(
+            error = errorMessage.email,
+            onValueChange = { viewModel.onClientChange(login.copy(email = it)) },
+            text = "Email",
+            keyboard = KeyboardType.Email,
+            value = login.email
+        )
+        PasswordField(
+            error = errorMessage.passwrd,
+            onValueChange = { viewModel.onClientChange(login.copy(password = it)) },
+            text = "Password",
+            value = login.password
+        )
     }
 
     Column(
@@ -64,24 +84,30 @@ fun LoginForm(texto: String, onTextChange: (String) -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Bottom
     ) {
-        FloatingActionButton(
+        Button(
+            enabled = buttonState,
             onClick = {},
             modifier = Modifier
                 .width(300.dp)
+                .size(90.dp)
                 .padding(16.dp)
                 .shadow(20.dp, RoundedCornerShape(10.dp), clip = false),
-            containerColor = MaterialTheme.colorScheme.primary,
-
-            ) { Text("Login") }
-        FloatingActionButton(
-            onClick = {},
+            colors = ButtonDefaults.buttonColors(
+                containerColor = MaterialTheme.colorScheme.primary
+            )
+        ) { Text("Login") }
+        Button(
+            enabled = true,
+            onClick = {viewModel.onLoginClick()},
             modifier = Modifier
                 .width(300.dp)
-                .padding(bottom = 16.dp, start = 16.dp, end = 16.dp)
+                .size(90.dp)
+                .padding(16.dp)
                 .shadow(20.dp, RoundedCornerShape(10.dp), clip = false),
-            containerColor = MaterialTheme.colorScheme.primary,
-
-            ) { Text("Register") }
+            colors = ButtonDefaults.buttonColors(
+                containerColor = MaterialTheme.colorScheme.primary
+            )
+        ) { Text("Register") }
     }
 }
 

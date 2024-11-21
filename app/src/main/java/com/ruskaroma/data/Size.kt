@@ -1,6 +1,6 @@
-package com.composePizzeria.data
+package com.ruskaroma.data
 
-enum class Size {
+enum class SIZE {
     SMALL,
     MEDIUM,
     LARGE

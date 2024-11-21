@@ -1,4 +1,4 @@
-package com.ruskaroma.ui.registro
+package com.ruskaroma.ui.register
 
 data class ErrorMessage(
     var name: String="",

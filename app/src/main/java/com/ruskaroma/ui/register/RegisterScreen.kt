@@ -1,4 +1,4 @@
-package com.ruskaroma.ui.registro
+package com.ruskaroma.ui.register
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -38,7 +38,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.composePizzeria.data.ClienteDTO
+import com.composePizzeria.data.ClientDTO
 import com.ruskaroma.R
 import com.ruskaroma.ui.theme.RuskaRomaTheme
 
@@ -46,7 +46,7 @@ import com.ruskaroma.ui.theme.RuskaRomaTheme
 @Composable
 fun RegisterScreen(viewModel: RegisterViewModel) {
     val buttonRegisterState: Boolean by viewModel.buttonRegisterState.observeAsState(false)
-    val client: ClienteDTO by viewModel.client.observeAsState(ClienteDTO())
+    val client: ClientDTO by viewModel.client.observeAsState(ClientDTO())
     val errorMessage: ErrorMessage by viewModel.errorMessage.observeAsState(ErrorMessage())
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         item {
@@ -59,7 +59,7 @@ fun RegisterScreen(viewModel: RegisterViewModel) {
 fun RegisterForm(
     buttonRegisterState: Boolean,
     viewModel: RegisterViewModel,
-    client: ClienteDTO,
+    client: ClientDTO,
     errorMessage: ErrorMessage
 ) {
     Column(
@@ -77,9 +77,9 @@ fun RegisterForm(
         )
         FormFields(
             error = errorMessage.name,
-            onValueChange = { viewModel.onClientChange(client.copy(nombre = it)) },
+            onValueChange = { viewModel.onClientChange(client.copy(name = it)) },
             "Name",
-            value = client.nombre,
+            value = client.name,
         )
         FormFields(
             onValueChange = { viewModel.onClientChange(client.copy(dni = it)) },
@@ -87,22 +87,22 @@ fun RegisterForm(
             value = client.dni
         )
         FormFields(
-            onValueChange = { viewModel.onClientChange(client.copy(direccion = it)) },
+            onValueChange = { viewModel.onClientChange(client.copy(direction = it)) },
             text = "Direction",
-            value = client.direccion
+            value = client.direction
         )
         FormFields(
-            onValueChange = { viewModel.onClientChange(client.copy(telefono = it)) },
+            onValueChange = { viewModel.onClientChange(client.copy(phone = it)) },
             text = "Telephone",
             keyboard = KeyboardType.Phone,
-            value = client.telefono
+            value = client.phone
         )
         FormFields(
             error = errorMessage.email,
-            onValueChange = { viewModel.onClientChange(client.copy(email = it)) },
+            onValueChange = { viewModel.onClientChange(client.copy(mail = it)) },
             text = "Email",
             keyboard = KeyboardType.Email,
-            value = client.email
+            value = client.mail
         )
         PasswordField(
             error = errorMessage.passwrd,
@@ -113,9 +113,10 @@ fun RegisterForm(
 
         Button(
             enabled = buttonRegisterState,
-            onClick = {},
+            onClick = { viewModel.onRegisterClick() },
             modifier = Modifier
                 .width(300.dp)
+                .size(85.dp)
                 .padding(16.dp)
                 .shadow(20.dp, RoundedCornerShape(10.dp), clip = false),
             colors = ButtonDefaults.buttonColors(
