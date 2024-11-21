@@ -2,20 +2,42 @@ package com.ruskaroma.ui.home
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.composePizzeria.data.IngredientDTO
-import com.composePizzeria.data.ORDER_STATUS
-import com.composePizzeria.data.OrderDTO
-import com.composePizzeria.data.OrderLineDTO
+import com.ruskaroma.data.IngredientDTO
+import com.ruskaroma.data.ORDER_STATUS
+import com.ruskaroma.data.OrderDTO
+import com.ruskaroma.data.OrderLineDTO
 import com.ruskaroma.data.ProductDTO
 import com.ruskaroma.data.TYPE
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
 import java.util.Date
+import java.util.Locale
 
+/**
+ * ViewModel responsible for managing the state and business logic of the Home screen.
+ */
 class HomeViewModel {
+
+    /** A live data object holding the list of products available on the home screen. */
     val productList = MutableLiveData<List<ProductDTO>>()
+
+    /** A live data object holding the current order details. */
     val order = MutableLiveData<OrderDTO>()
+
+    /** A live data object holding the total number of products added to the cart. */
     val totalProducts = MutableLiveData(0)
 
+    /** A DecimalFormat instance to format prices to two decimal places. */
+    val format: DecimalFormat = DecimalFormat("#.00").apply {
+        decimalFormatSymbols = DecimalFormatSymbols(Locale.US)
+    }
 
+    /**
+     * Adds a product to the cart with the specified amount.
+     *
+     * @param amount The quantity of the product to add.
+     * @param product The product to be added to the cart.
+     */
     fun onAddCart(amount: Int, product: ProductDTO) {
         if (order.value == null) {
             initializeOrder()
@@ -23,24 +45,42 @@ class HomeViewModel {
 
         val orderLine = OrderLineDTO(1, amount, product)
 
+        order.value?.orderLineDTO?.add(orderLine)
+        order.value?.totalPrice?.plus(product.price * amount)?.also {
+            order.value?.totalPrice = truncateToTwoDecimalsMath(it) // Truncar a 2 decimales
+        }
+
+        totalProducts.value = totalProducts.value?.plus(amount)
+
         Log.d("Linea de pedido: ", orderLine.toString())
         Log.d("Pedido: ", order.value.toString())
-
-        order.value?.orderLineDTO?.add(orderLine)
-        totalProducts.value = totalProducts.value?.plus(amount)
     }
 
+
+    /**
+     * Initializes a new order when none exists.
+     */
     private fun initializeOrder() {
         order.value = OrderDTO(1, Date(), ORDER_STATUS.PENDING, 0.0, mutableListOf())
     }
 
+    /**
+     * Truncates a double value to two decimal places using mathematical operations.
+     *
+     * @param price The value to be truncated.
+     * @return The truncated value with two decimal places.
+     */
+    private fun truncateToTwoDecimalsMath(price: Double): Double {
+        return (price * 100).toInt() / 100.0
+    }
 
     // Example IngredientDTO instances with allergens
     val tomato = IngredientDTO(1, "Tomato", listOf("None"))
     val mozzarella = IngredientDTO(2, "Mozzarella", listOf("Milk"))
     val mushrooms = IngredientDTO(3, "Mushrooms", listOf("None"))
     val basil = IngredientDTO(4, "Basil", listOf("None"))
-    val lettuce = IngredientDTO(5, "Lettuce", listOf("None")) // Not common for pasta but kept for reference
+    val lettuce =
+        IngredientDTO(5, "Lettuce", listOf("None")) // Not common for pasta but kept for reference
     val cheddar = IngredientDTO(6, "Cheddar", listOf("Milk")) // Less common for pasta, optional
     val bacon = IngredientDTO(7, "Bacon", listOf("None"))
     val onions = IngredientDTO(8, "Onions", listOf("None"))
@@ -196,13 +236,9 @@ class HomeViewModel {
     )
 
     val kebab3 = ProductDTO(
-        id = 15,
-        name = "Spicy Kebab",
-        price = 9.99,
-        size = null,
-        ingredients = listOf(tomato, lettuce, onions, cucumber, IngredientDTO(16, "Spicy Sauce", listOf("None"))),
-        type = TYPE.KEBAB,
-        meat = null
+        id = 15, name = "Spicy Kebab", price = 9.99, size = null, ingredients = listOf(
+            tomato, lettuce, onions, cucumber, IngredientDTO(16, "Spicy Sauce", listOf("None"))
+        ), type = TYPE.KEBAB, meat = null
     )
 
     val kebab4 = ProductDTO(

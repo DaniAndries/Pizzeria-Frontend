@@ -38,11 +38,16 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.composePizzeria.data.ClientDTO
+import com.ruskaroma.data.ClientDTO
 import com.ruskaroma.R
 import com.ruskaroma.ui.theme.RuskaRomaTheme
 
-
+/**
+ * Composable function to display the registration screen. It observes the state of the register button
+ * and error messages, and passes them along with the client data to the `RegisterForm` composable.
+ *
+ * @param viewModel The `RegisterViewModel` which holds the client data, error messages, and button state.
+ */
 @Composable
 fun RegisterScreen(viewModel: RegisterViewModel) {
     val buttonRegisterState: Boolean by viewModel.buttonRegisterState.observeAsState(false)
@@ -55,6 +60,15 @@ fun RegisterScreen(viewModel: RegisterViewModel) {
     }
 }
 
+/**
+ * Composable function that renders the form for user registration, including fields for name, DNI,
+ * direction, phone number, email, and password.
+ *
+ * @param buttonRegisterState Boolean that determines if the register button is enabled.
+ * @param viewModel The `RegisterViewModel` that handles the logic behind client data changes.
+ * @param client The client data containing the information entered by the user.
+ * @param errorMessage The error messages that should be displayed under specific fields.
+ */
 @Composable
 fun RegisterForm(
     buttonRegisterState: Boolean,
@@ -126,13 +140,15 @@ fun RegisterForm(
     }
 }
 
+// Name, DNI, Direction, Phone, Email, and Password input fields
 /**
- *     val Name:String,
- *     val DNI:String,
- *     val Direction:String,
- *     val Telephone:String,
- *     val Email:String,
- *     val Password:String,
+ * A composable function that renders a text input field.
+ *
+ * @param error Error message to display below the text field, if any.
+ * @param onValueChange A lambda function to handle changes in the text field.
+ * @param text The placeholder text to be displayed in the text field.
+ * @param keyboard The keyboard type to be used (default is Text).
+ * @param value The current value of the text field.
  */
 @Composable
 fun FormFields(
@@ -155,11 +171,20 @@ fun FormFields(
         shape = RoundedCornerShape(10.dp),
         value = value,
         onValueChange = { onValueChange(it) })
+
     if (error.isNotBlank() && value.isNotBlank()) {
         Text(color = MaterialTheme.colorScheme.error, text = error)
     }
 }
 
+/**
+ * A composable function that renders a password input field with the option to show or hide the password.
+ *
+ * @param error Error message to display below the password field, if any.
+ * @param onValueChange A lambda function to handle changes in the password field.
+ * @param text The placeholder text to be displayed in the password field.
+ * @param value The current value of the password field.
+ */
 @Composable
 fun PasswordField(
     error: String = "",
@@ -199,6 +224,9 @@ fun PasswordField(
     }
 }
 
+/**
+ * Preview function to display the `RegisterScreen` composable in the IDE's preview window.
+ */
 @Preview(showBackground = true)
 @Composable
 fun RegisterPreview() {

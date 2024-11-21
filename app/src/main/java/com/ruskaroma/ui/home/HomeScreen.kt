@@ -53,13 +53,19 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.composePizzeria.data.MEAT_TYPE
+import com.ruskaroma.data.MEAT_TYPE
 import com.ruskaroma.R
 import com.ruskaroma.data.ProductDTO
 import com.ruskaroma.data.SIZE
 import com.ruskaroma.data.TYPE
 import com.ruskaroma.ui.theme.RuskaRomaTheme
 
+/**
+ * Displays the home screen of the app, which contains a list of products
+ * categorized into pizzas, pasta, kebabs, and drinks. Users can add items to their cart.
+ *
+ * @param viewModel the ViewModel containing the logic and state for the home screen.
+ */
 @Composable
 fun HomeScreen(viewModel: HomeViewModel) {
     viewModel.generateList()
@@ -147,6 +153,12 @@ fun HomeScreen(viewModel: HomeViewModel) {
     }
 }
 
+/**
+ * Displays the top bar with the app title and a shopping cart icon that shows
+ * the total number of products in the cart.
+ *
+ * @param totalProducts the total number of products in the cart (nullable).
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(totalProducts: Int?) {
@@ -191,7 +203,13 @@ fun TopBar(totalProducts: Int?) {
     )
 }
 
-
+/**
+ * Displays a card for a single product, including its image, name, price,
+ * and options to add it to the cart.
+ *
+ * @param product the product to be displayed.
+ * @param onAddCart a lambda that handles adding the product to the cart.
+ */
 @Composable
 fun ProductCard(product: ProductDTO, onAddCart: (amount: Int, product: ProductDTO) -> Unit) {
     ElevatedCard(
@@ -243,6 +261,14 @@ fun ProductCard(product: ProductDTO, onAddCart: (amount: Int, product: ProductDT
     }
 }
 
+/**
+ * Displays buttons for adjusting the quantity of a product, selecting options
+ * (e.g., size or meat type), and adding the product to the cart.
+ *
+ * @param type the type of the product (e.g., PIZZA, KEBAB).
+ * @param product the product being adjusted or added to the cart.
+ * @param onAddCart a lambda for handling the addition of the product to the cart.
+ */
 @Composable
 fun SetButtons(
     type: TYPE, product: ProductDTO, onAddCart: (Int, ProductDTO) -> Unit
@@ -308,7 +334,6 @@ fun SetButtons(
             selectedSize = "Size"
             selectedMeat = "Meat"
             counter = 1
-
         }) {
             Icon(imageVector = Icons.Filled.AddShoppingCart, contentDescription = "Add to Cart")
         }

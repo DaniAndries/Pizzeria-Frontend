@@ -1,0 +1,132 @@
+/* my-styles.css */
+
+/* Estilo global para el body */
+body {
+    font-family: 'Arial', sans-serif;  /* Fuente para todo el texto */
+    background-color: #f4f4f4;        /* Color de fondo */
+    color: #333;                      /* Color de texto */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo para encabezados */
+h1, h2, h3, h4, h5, h6 {
+    color: #2c3e50;                   /* Color de texto para los encabezados */
+    font-weight: bold;
+}
+
+/* Estilo para los párrafos */
+p {
+    line-height: 1.6;                  /* Espaciado entre líneas */
+    margin-bottom: 16px;
+}
+
+/* Estilo de enlaces */
+a {
+    color: #3498db;                    /* Color de los enlaces */
+    text-decoration: none;             /* Elimina el subrayado */
+}
+
+a:hover {
+    text-decoration: underline;        /* Subrayado en hover */
+}
+
+/* Estilo de botones */
+button {
+    background-color: #3498db;         /* Fondo azul */
+    color: white;                      /* Color de texto */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;                /* Bordes redondeados */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;         /* Color de fondo cuando se pasa el mouse */
+}
+
+/* Estilo de imágenes */
+img {
+    max-width: 100%;                   /* La imagen no se desborda */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Estilo de contenedores */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Sombra suave */
+    border-radius: 8px;
+}
+
+/* Estilo para tarjetas o bloques */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo de formularios */
+form {
+    margin-top: 20px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 20px 0;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Estilo para campos con errores */
+input.error, textarea.error {
+    border-color: #e74c3c;             /* Color de borde rojo para campos con error */
+}
+
+.error-message {
+    color: #e74c3c;                    /* Color rojo para mensajes de error */
+    font-size: 14px;
+}
+
+/* Estilo para tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #3498db;
+    color: white;
+}
+
+/* Estilo para listas */
+ul, ol {
+    padding-left: 20px;
+}
+
+/* Estilo para elementos de lista */
+li {
+    margin-bottom: 8px;
+}

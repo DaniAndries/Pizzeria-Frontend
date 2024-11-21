@@ -1,6 +1,5 @@
 package com.ruskaroma.ui.login
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -31,6 +30,11 @@ import com.ruskaroma.ui.register.FormFields
 import com.ruskaroma.ui.register.PasswordField
 import com.ruskaroma.ui.theme.RuskaRomaTheme
 
+/**
+ * Displays the login screen, which includes the login form and button states.
+ *
+ * @param viewModel The ViewModel to manage the state and handle user actions.
+ */
 @Composable
 fun LoginScreen(viewModel: LoginViewModel) {
     val buttonRegisterState: Boolean by viewModel.buttonRegisterState.observeAsState(false)
@@ -39,6 +43,14 @@ fun LoginScreen(viewModel: LoginViewModel) {
     LoginForm(buttonRegisterState, viewModel, login, errorMessage)
 }
 
+/**
+ * Displays the login form UI with fields for email and password, and buttons for login and registration.
+ *
+ * @param buttonState State of the register button (enabled or disabled).
+ * @param viewModel The ViewModel to manage the form logic and user actions.
+ * @param login The current login data (email and password).
+ * @param errorMessage The error messages for email and password fields.
+ */
 @Composable
 fun LoginForm(
     buttonState: Boolean,
@@ -111,7 +123,9 @@ fun LoginForm(
     }
 }
 
-
+/**
+ * Previews the LoginScreen UI with the LoginViewModel.
+ */
 @Preview(showBackground = true)
 @Composable
 fun LoginPreview() {
