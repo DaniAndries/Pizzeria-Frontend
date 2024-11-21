@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="app/src/main/res/drawable/ReadmeLogo.png" alt="LogoRuskaRoma" width="150">
+  <img src="app/src/main/res/drawable/readme_logo.png" alt="LogoRuskaRoma" width="150">
 </div>
 
 <h1 align="center">Pizzeria App</h1>
