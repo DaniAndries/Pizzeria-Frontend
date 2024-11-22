@@ -1,4 +1,4 @@
-package com.ruskaroma.data
+package com.ruskaroma.data.model
 
 /**
  * Enum class representing the different types of products in the menu.

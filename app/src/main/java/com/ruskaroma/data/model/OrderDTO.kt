@@ -1,4 +1,4 @@
-package com.ruskaroma.data
+package com.ruskaroma.data.model
 
 import java.util.Date
 

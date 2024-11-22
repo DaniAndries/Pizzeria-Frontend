@@ -3,7 +3,9 @@ package com.ruskaroma.ui.register
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.ruskaroma.data.ClientDTO
+import androidx.navigation.NavController
+import com.ruskaroma.data.model.ClientDTO
+import com.ruskaroma.navigator.Screen
 
 /**
  * ViewModel class that handles the state and business logic for the user registration process.
@@ -54,7 +56,9 @@ class RegisterViewModel : ViewModel() {
      * Function called when the user clicks the register button.
      * Currently logs the client data to the console.
      */
-    fun onRegisterClick() {
+    fun onRegisterClick(navController: NavController) {
+
         Log.d("Login", "${client.value}")
+        navController.navigate(Screen.Home.route)
     }
 }

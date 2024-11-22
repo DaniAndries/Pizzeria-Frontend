@@ -1,8 +1,10 @@
 package com.ruskaroma.ui.register
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -30,16 +32,24 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ruskaroma.data.ClientDTO
+import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.ruskaroma.R
+import com.ruskaroma.data.model.ClientDTO
+import com.ruskaroma.navigator.AppNavigation
+import com.ruskaroma.navigator.Screen
 import com.ruskaroma.ui.theme.RuskaRomaTheme
 
 /**
@@ -49,13 +59,13 @@ import com.ruskaroma.ui.theme.RuskaRomaTheme
  * @param viewModel The `RegisterViewModel` which holds the client data, error messages, and button state.
  */
 @Composable
-fun RegisterScreen(viewModel: RegisterViewModel) {
+fun RegisterScreen(navController: NavController, viewModel: RegisterViewModel) {
     val buttonRegisterState: Boolean by viewModel.buttonRegisterState.observeAsState(false)
     val client: ClientDTO by viewModel.client.observeAsState(ClientDTO())
     val errorMessage: ErrorMessage by viewModel.errorMessage.observeAsState(ErrorMessage())
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         item {
-            RegisterForm(buttonRegisterState, viewModel, client, errorMessage)
+            RegisterForm(navController, buttonRegisterState, viewModel, client, errorMessage)
         }
     }
 }
@@ -71,6 +81,7 @@ fun RegisterScreen(viewModel: RegisterViewModel) {
  */
 @Composable
 fun RegisterForm(
+    navController: NavController,
     buttonRegisterState: Boolean,
     viewModel: RegisterViewModel,
     client: ClientDTO,
@@ -125,9 +136,10 @@ fun RegisterForm(
             value = client.password
         )
 
+
         Button(
             enabled = buttonRegisterState,
-            onClick = { viewModel.onRegisterClick() },
+            onClick = { viewModel.onRegisterClick(navController) },
             modifier = Modifier
                 .width(300.dp)
                 .size(85.dp)
@@ -137,6 +149,28 @@ fun RegisterForm(
                 containerColor = MaterialTheme.colorScheme.primary
             )
         ) { Text("Register") }
+        Row(){
+            Text("Already have an account? ")
+            Text(
+                color = MaterialTheme.colorScheme.primary,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .drawBehind {
+                        val strokeWidthPx = 1.dp.toPx()
+                        val verticalOffset = size.height - 2.sp.toPx()
+                        drawLine(
+                            color = Color(0xFF6E1B3A),
+                            strokeWidth = strokeWidthPx,
+                            start = Offset(0f, verticalOffset),
+                            end = Offset(size.width, verticalOffset)
+                        )
+                    }
+                    .clickable{
+                        navController.navigate(Screen.Login.route)
+                    },
+                text = "Login Now"
+            )
+        }
     }
 }
 
@@ -158,8 +192,7 @@ fun FormFields(
     keyboard: KeyboardType = KeyboardType.Text,
     value: String
 ) {
-    TextField(
-        keyboardOptions = KeyboardOptions(keyboardType = keyboard),
+    TextField(keyboardOptions = KeyboardOptions(keyboardType = keyboard),
         placeholder = { Text(text) },
         modifier = Modifier
             .width(300.dp)
@@ -187,14 +220,10 @@ fun FormFields(
  */
 @Composable
 fun PasswordField(
-    error: String = "",
-    onValueChange: (String) -> Unit,
-    text: String,
-    value: String
+    error: String = "", onValueChange: (String) -> Unit, text: String, value: String
 ) {
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
-    TextField(
-        onValueChange = { onValueChange(it) },
+    TextField(onValueChange = { onValueChange(it) },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
         placeholder = { Text(text) },
         modifier = Modifier
@@ -208,8 +237,7 @@ fun PasswordField(
         value = value,
         visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
         trailingIcon = {
-            val image = if (passwordVisible)
-                Icons.Filled.Visibility
+            val image = if (passwordVisible) Icons.Filled.Visibility
             else Icons.Filled.VisibilityOff
 
             // Please provide localized description for accessibility services
@@ -224,13 +252,11 @@ fun PasswordField(
     }
 }
 
-/**
- * Preview function to display the `RegisterScreen` composable in the IDE's preview window.
- */
 @Preview(showBackground = true)
 @Composable
-fun RegisterPreview() {
+fun GreetingPreview() {
     RuskaRomaTheme {
-        RegisterScreen(RegisterViewModel())
+        val navController = rememberNavController()
+        AppNavigation(navController = navController)
     }
 }

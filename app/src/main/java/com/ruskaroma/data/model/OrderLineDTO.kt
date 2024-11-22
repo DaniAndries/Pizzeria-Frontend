@@ -1,6 +1,4 @@
-package com.ruskaroma.data
-
-import com.ruskaroma.data.ProductDTO
+package com.ruskaroma.data.model
 
 /**
  * Data class representing a line in an order.

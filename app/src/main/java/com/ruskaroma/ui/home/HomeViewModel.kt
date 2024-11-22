@@ -2,12 +2,12 @@ package com.ruskaroma.ui.home
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.ruskaroma.data.IngredientDTO
-import com.ruskaroma.data.ORDER_STATUS
-import com.ruskaroma.data.OrderDTO
-import com.ruskaroma.data.OrderLineDTO
-import com.ruskaroma.data.ProductDTO
-import com.ruskaroma.data.TYPE
+import com.ruskaroma.data.model.IngredientDTO
+import com.ruskaroma.data.model.ORDER_STATUS
+import com.ruskaroma.data.model.OrderDTO
+import com.ruskaroma.data.model.OrderLineDTO
+import com.ruskaroma.data.model.ProductDTO
+import com.ruskaroma.data.model.TYPE
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.Date

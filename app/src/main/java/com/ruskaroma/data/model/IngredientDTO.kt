@@ -1,4 +1,4 @@
-package com.ruskaroma.data
+package com.ruskaroma.data.model
 
 /**
  * Data class representing an ingredient used in the system.

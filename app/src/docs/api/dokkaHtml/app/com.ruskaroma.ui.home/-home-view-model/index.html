@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>HomeViewModel</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../../index.html">
+                            app
+                    </a>
+            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":app:dokkaHtml/release">androidJvm</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="app::com.ruskaroma.ui.home/HomeViewModel///PointingToDeclaration//492899073">
+  <div class="breadcrumbs"><a href="../../../index.html">app</a><span class="delimiter">/</span><a href="../index.html">com.ruskaroma.ui.home</a><span class="delimiter">/</span><span class="current">HomeViewModel</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Home</span><wbr></wbr><span>View</span><wbr></wbr><span><span>Model</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">HomeViewModel</a></div><p class="paragraph">ViewModel responsible for managing the state and business logic of the Home screen.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="1153648796%2FConstructors%2F492899073" anchor-label="HomeViewModel" id="1153648796%2FConstructors%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-home-view-model.html"><span>Home</span><wbr></wbr><span>View</span><wbr></wbr><span><span>Model</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1153648796%2FConstructors%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-1465553732%2FProperties%2F492899073" anchor-label="allProducts" id="-1465553732%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="all-products.html"><span>all</span><wbr></wbr><span><span>Products</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1465553732%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="all-products.html">allProducts</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../../com.ruskaroma.data/-product-d-t-o/index.html">ProductDTO</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-565037378%2FProperties%2F492899073" anchor-label="bacon" id="-565037378%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="bacon.html"><span><span>bacon</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-565037378%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="bacon.html">bacon</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-ingredient-d-t-o/index.html">IngredientDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1882611222%2FProperties%2F492899073" anchor-label="basil" id="-1882611222%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="basil.html"><span><span>basil</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1882611222%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="basil.html">basil</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-ingredient-d-t-o/index.html">IngredientDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1819665183%2FProperties%2F492899073" anchor-label="bbqSauce" id="-1819665183%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="bbq-sauce.html"><span>bbq</span><wbr></wbr><span><span>Sauce</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1819665183%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="bbq-sauce.html">bbqSauce</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-ingredient-d-t-o/index.html">IngredientDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="566611216%2FProperties%2F492899073" anchor-label="cheddar" id="566611216%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="cheddar.html"><span><span>cheddar</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="566611216%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="cheddar.html">cheddar</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-ingredient-d-t-o/index.html">IngredientDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1173294573%2FProperties%2F492899073" anchor-label="cucumber" id="-1173294573%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="cucumber.html"><span><span>cucumber</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1173294573%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="cucumber.html">cucumber</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-ingredient-d-t-o/index.html">IngredientDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1605136704%2FProperties%2F492899073" anchor-label="drink1" id="1605136704%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="drink1.html"><span><span>drink1</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1605136704%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="drink1.html">drink1</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-product-d-t-o/index.html">ProductDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1636156511%2FProperties%2F492899073" anchor-label="drink2" id="1636156511%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="drink2.html"><span><span>drink2</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1636156511%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="drink2.html">drink2</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-product-d-t-o/index.html">ProductDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1667176318%2FProperties%2F492899073" anchor-label="drink3" id="1667176318%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="drink3.html"><span><span>drink3</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1667176318%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="drink3.html">drink3</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-product-d-t-o/index.html">ProductDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1698196125%2FProperties%2F492899073" anchor-label="drink4" id="1698196125%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="drink4.html"><span><span>drink4</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1698196125%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="drink4.html">drink4</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-product-d-t-o/index.html">ProductDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1227626914%2FProperties%2F492899073" anchor-label="format" id="1227626914%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="format.html"><span><span>format</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1227626914%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="format.html">format</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/text/DecimalFormat.html">DecimalFormat</a></div><div class="brief "><p class="paragraph">A DecimalFormat instance to format prices to two decimal places.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="250378443%2FProperties%2F492899073" anchor-label="garlic" id="250378443%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="garlic.html"><span><span>garlic</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="250378443%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="garlic.html">garlic</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-ingredient-d-t-o/index.html">IngredientDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1986069039%2FProperties%2F492899073" anchor-label="kebab1" id="-1986069039%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="kebab1.html"><span><span>kebab1</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1986069039%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="kebab1.html">kebab1</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-product-d-t-o/index.html">ProductDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1955049232%2FProperties%2F492899073" anchor-label="kebab2" id="-1955049232%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="kebab2.html"><span><span>kebab2</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1955049232%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="kebab2.html">kebab2</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-product-d-t-o/index.html">ProductDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1924029425%2FProperties%2F492899073" anchor-label="kebab3" id="-1924029425%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="kebab3.html"><span><span>kebab3</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1924029425%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="kebab3.html">kebab3</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-product-d-t-o/index.html">ProductDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1893009618%2FProperties%2F492899073" anchor-label="kebab4" id="-1893009618%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="kebab4.html"><span><span>kebab4</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1893009618%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="kebab4.html">kebab4</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-product-d-t-o/index.html">ProductDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1537970237%2FProperties%2F492899073" anchor-label="lettuce" id="-1537970237%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="lettuce.html"><span><span>lettuce</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1537970237%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="lettuce.html">lettuce</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-ingredient-d-t-o/index.html">IngredientDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1787393962%2FProperties%2F492899073" anchor-label="mozzarella" id="1787393962%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="mozzarella.html"><span><span>mozzarella</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1787393962%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="mozzarella.html">mozzarella</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-ingredient-d-t-o/index.html">IngredientDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="567991686%2FProperties%2F492899073" anchor-label="mushrooms" id="567991686%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="mushrooms.html"><span><span>mushrooms</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="567991686%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="mushrooms.html">mushrooms</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-ingredient-d-t-o/index.html">IngredientDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="80117922%2FProperties%2F492899073" anchor-label="oliveOil" id="80117922%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="olive-oil.html"><span>olive</span><wbr></wbr><span><span>Oil</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="80117922%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="olive-oil.html">oliveOil</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-ingredient-d-t-o/index.html">IngredientDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1506149679%2FProperties%2F492899073" anchor-label="onions" id="1506149679%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="onions.html"><span><span>onions</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1506149679%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="onions.html">onions</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-ingredient-d-t-o/index.html">IngredientDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1618003635%2FProperties%2F492899073" anchor-label="order" id="1618003635%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="order.html"><span><span>order</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1618003635%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="order.html">order</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/MutableLiveData.html">MutableLiveData</a><span class="token operator">&lt;</span><a href="../../com.ruskaroma.data/-order-d-t-o/index.html">OrderDTO</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">A live data object holding the current order details.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1966582098%2FProperties%2F492899073" anchor-label="parmesan" id="1966582098%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="parmesan.html"><span><span>parmesan</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1966582098%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="parmesan.html">parmesan</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-ingredient-d-t-o/index.html">IngredientDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1408819319%2FProperties%2F492899073" anchor-label="pasta1" id="1408819319%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="pasta1.html"><span><span>pasta1</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1408819319%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="pasta1.html">pasta1</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-product-d-t-o/index.html">ProductDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1439839126%2FProperties%2F492899073" anchor-label="pasta2" id="1439839126%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="pasta2.html"><span><span>pasta2</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1439839126%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="pasta2.html">pasta2</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-product-d-t-o/index.html">ProductDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1470858933%2FProperties%2F492899073" anchor-label="pasta3" id="1470858933%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="pasta3.html"><span><span>pasta3</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1470858933%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="pasta3.html">pasta3</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-product-d-t-o/index.html">ProductDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1501878740%2FProperties%2F492899073" anchor-label="pasta4" id="1501878740%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="pasta4.html"><span><span>pasta4</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1501878740%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="pasta4.html">pasta4</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-product-d-t-o/index.html">ProductDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2051719216%2FProperties%2F492899073" anchor-label="peppers" id="-2051719216%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="peppers.html"><span><span>peppers</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2051719216%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="peppers.html">peppers</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-ingredient-d-t-o/index.html">IngredientDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1365406456%2FProperties%2F492899073" anchor-label="pickles" id="-1365406456%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="pickles.html"><span><span>pickles</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1365406456%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="pickles.html">pickles</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-ingredient-d-t-o/index.html">IngredientDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="527673648%2FProperties%2F492899073" anchor-label="pizza1" id="527673648%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="pizza1.html"><span><span>pizza1</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="527673648%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="pizza1.html">pizza1</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-product-d-t-o/index.html">ProductDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="558693455%2FProperties%2F492899073" anchor-label="pizza2" id="558693455%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="pizza2.html"><span><span>pizza2</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="558693455%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="pizza2.html">pizza2</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-product-d-t-o/index.html">ProductDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="589713262%2FProperties%2F492899073" anchor-label="pizza3" id="589713262%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="pizza3.html"><span><span>pizza3</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="589713262%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="pizza3.html">pizza3</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-product-d-t-o/index.html">ProductDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="620733069%2FProperties%2F492899073" anchor-label="pizza4" id="620733069%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="pizza4.html"><span><span>pizza4</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="620733069%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="pizza4.html">pizza4</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-product-d-t-o/index.html">ProductDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-440589900%2FProperties%2F492899073" anchor-label="productList" id="-440589900%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="product-list.html"><span>product</span><wbr></wbr><span><span>List</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-440589900%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="product-list.html">productList</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/MutableLiveData.html">MutableLiveData</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../../com.ruskaroma.data/-product-d-t-o/index.html">ProductDTO</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">A live data object holding the list of products available on the home screen.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1924080401%2FProperties%2F492899073" anchor-label="tomato" id="-1924080401%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="tomato.html"><span><span>tomato</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1924080401%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="tomato.html">tomato</a><span class="token operator">: </span><a href="../../com.ruskaroma.data/-ingredient-d-t-o/index.html">IngredientDTO</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1248279161%2FProperties%2F492899073" anchor-label="totalProducts" id="1248279161%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="total-products.html"><span>total</span><wbr></wbr><span><span>Products</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1248279161%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="total-products.html">totalProducts</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/MutableLiveData.html">MutableLiveData</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">A live data object holding the total number of products added to the cart.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-1498212250%2FFunctions%2F492899073" anchor-label="generateList" id="-1498212250%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="generate-list.html"><span>generate</span><wbr></wbr><span><span>List</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1498212250%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="generate-list.html"><span class="token function">generateList</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1094597680%2FFunctions%2F492899073" anchor-label="onAddCart" id="-1094597680%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-add-cart.html"><span>on</span><wbr></wbr><span>Add</span><wbr></wbr><span><span>Cart</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1094597680%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="on-add-cart.html"><span class="token function">onAddCart</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">amount<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">product<span class="token operator">: </span><a href="../../com.ruskaroma.data/-product-d-t-o/index.html">ProductDTO</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Adds a product to the cart with the specified amount.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>(c) 2024 DaniAndries</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

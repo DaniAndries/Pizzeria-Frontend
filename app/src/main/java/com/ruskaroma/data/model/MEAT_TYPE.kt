@@ -1,4 +1,4 @@
-package com.ruskaroma.data
+package com.ruskaroma.data.model
 
 /**
  * Enum class representing different types of meat used in dishes.

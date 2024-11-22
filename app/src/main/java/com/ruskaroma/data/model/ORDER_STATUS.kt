@@ -1,4 +1,4 @@
-package com.ruskaroma.data
+package com.ruskaroma.data.model
 
 /**
  * Enum class representing the status of an order in the system.

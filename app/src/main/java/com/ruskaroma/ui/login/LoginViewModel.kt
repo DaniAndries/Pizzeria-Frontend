@@ -2,7 +2,9 @@ package com.ruskaroma.ui.login
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.ruskaroma.data.LoginDTO
+import androidx.navigation.NavController
+import com.ruskaroma.data.model.LoginDTO
+import com.ruskaroma.navigator.Screen
 import com.ruskaroma.ui.register.ErrorMessage
 
 /**
@@ -38,7 +40,8 @@ class LoginViewModel {
      * This method is typically called to handle the login logic (authentication).
      * For now, it just logs the current login data to the debug log.
      */
-    fun onLoginClick(){
+    fun onLoginClick(navController: NavController){
         Log.d("Login", "${login.value}")
+        navController.navigate(Screen.Home.route)
     }
 }

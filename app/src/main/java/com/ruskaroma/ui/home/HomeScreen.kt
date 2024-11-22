@@ -53,11 +53,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.ruskaroma.data.MEAT_TYPE
+import androidx.navigation.NavController
 import com.ruskaroma.R
-import com.ruskaroma.data.ProductDTO
-import com.ruskaroma.data.SIZE
-import com.ruskaroma.data.TYPE
+import com.ruskaroma.data.model.MEAT_TYPE
+import com.ruskaroma.data.model.ProductDTO
+import com.ruskaroma.data.model.SIZE
+import com.ruskaroma.data.model.TYPE
 import com.ruskaroma.ui.theme.RuskaRomaTheme
 
 /**
@@ -67,7 +68,7 @@ import com.ruskaroma.ui.theme.RuskaRomaTheme
  * @param viewModel the ViewModel containing the logic and state for the home screen.
  */
 @Composable
-fun HomeScreen(viewModel: HomeViewModel) {
+fun HomeScreen(navController: NavController, viewModel: HomeViewModel) {
     viewModel.generateList()
     val productList by viewModel.productList.observeAsState()
     val totalProducts by viewModel.totalProducts.observeAsState()
@@ -377,13 +378,5 @@ fun SetDropdownMenus(
                 }
             }
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun HomePreview() {
-    RuskaRomaTheme {
-        HomeScreen(HomeViewModel())
     }
 }

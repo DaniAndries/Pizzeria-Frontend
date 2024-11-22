@@ -5,8 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.ruskaroma.ui.home.HomeScreen
-import com.ruskaroma.ui.home.HomeViewModel
+import androidx.navigation.compose.rememberNavController
+import com.ruskaroma.navigator.AppNavigation
+
 import com.ruskaroma.ui.register.RegisterScreen
 import com.ruskaroma.ui.register.RegisterViewModel
 import com.ruskaroma.ui.theme.RuskaRomaTheme
@@ -16,7 +17,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             RuskaRomaTheme {
-                HomeScreen(HomeViewModel())
+                val navController = rememberNavController()
+                AppNavigation(navController = navController)
             }
         }
     }
@@ -28,6 +30,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     RuskaRomaTheme {
-        RegisterScreen(RegisterViewModel())
+        val navController = rememberNavController()
+        AppNavigation(navController = navController)
     }
 }
