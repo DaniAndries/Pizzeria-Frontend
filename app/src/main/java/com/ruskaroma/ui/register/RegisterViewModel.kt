@@ -51,14 +51,12 @@ class RegisterViewModel : ViewModel() {
             (newCliente.dni.isNotBlank() && newCliente.name.isNotBlank() && newCliente.direction.isNotBlank() && newCliente.phone.isNotBlank() && newCliente.mail.isNotBlank() && newCliente.password.isNotBlank())
     }
 
-
     /**
      * Function called when the user clicks the register button.
      * Currently logs the client data to the console.
      */
     fun onRegisterClick(navController: NavController) {
-
         Log.d("Login", "${client.value}")
-        navController.navigate(Screen.Home.route)
+        navController.navigate(Screen.Login.route)
     }
 }

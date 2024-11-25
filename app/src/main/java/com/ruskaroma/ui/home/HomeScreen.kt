@@ -24,8 +24,10 @@ import androidx.compose.material.icons.filled.AddShoppingCart
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.RemoveCircle
 import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
+import androidx.compose.material3.Button
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -43,6 +45,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -72,6 +75,7 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel) {
     viewModel.generateList()
     val productList by viewModel.productList.observeAsState()
     val totalProducts by viewModel.totalProducts.observeAsState()
+
 
     LazyColumn(
         Modifier
@@ -163,13 +167,15 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(totalProducts: Int?) {
+    var showDialog by remember { mutableStateOf(false) }
+
     TopAppBar(title = {
         Text(
             text = "Ruska Roma",
             style = MaterialTheme.typography.titleLarge,
         )
     }, navigationIcon = {
-        IconButton(onClick = { /* Acción del menú */ }) {
+        IconButton(onClick = { showDialog = true }) {
             Icon(
                 imageVector = Icons.Default.Menu,
                 contentDescription = "Menu",
@@ -202,6 +208,17 @@ fun TopBar(totalProducts: Int?) {
         actionIconContentColor = Color(0xFFDAD0D3)
     )
     )
+
+    if (showDialog) {
+        SimpleAlertDialog(
+            onConfirm = {
+                showDialog = false
+            },
+            onDismiss = {
+                showDialog = false
+            }
+        )
+    }
 }
 
 /**
@@ -378,5 +395,43 @@ fun SetDropdownMenus(
                 }
             }
         }
+    }
+}
+
+@Composable
+fun SimpleAlertDialog(
+    onConfirm: (Boolean) -> Unit,
+    onDismiss: (Boolean) -> Unit
+) {
+    var showDialog by remember { mutableStateOf(true) }
+    if (showDialog) {
+        AlertDialog(
+            onDismissRequest = {
+                showDialog = false
+                onDismiss(false) // Llamada a onDismiss al cerrar el diálogo
+            },
+            title = {
+                Text(text = "Cierre de sesión")
+            },
+            text = {
+                Text("¿Estás seguro de que quieres cerrar sesión?")
+            },
+            confirmButton = {
+                TextButton(onClick = {
+                    showDialog = false
+                    onConfirm(true) // Llamada a onConfirm al confirmar la acción
+                }) {
+                    Text("Sí")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = {
+                    showDialog = false
+                    onDismiss(false) // Llamada a onDismiss al cancelar
+                }) {
+                    Text("No")
+                }
+            }
+        )
     }
 }

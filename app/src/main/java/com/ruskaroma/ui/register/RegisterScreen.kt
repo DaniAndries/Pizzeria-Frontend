@@ -149,10 +149,9 @@ fun RegisterForm(
                 containerColor = MaterialTheme.colorScheme.primary
             )
         ) { Text("Register") }
-        Row(){
+        Row() {
             Text("Already have an account? ")
-            Text(
-                color = MaterialTheme.colorScheme.primary,
+            Text(color = MaterialTheme.colorScheme.primary,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier
                     .drawBehind {
@@ -165,7 +164,7 @@ fun RegisterForm(
                             end = Offset(size.width, verticalOffset)
                         )
                     }
-                    .clickable{
+                    .clickable {
                         navController.navigate(Screen.Login.route)
                     },
                 text = "Login Now"

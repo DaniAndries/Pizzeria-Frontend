@@ -47,7 +47,7 @@ class HomeViewModel {
 
         order.value?.orderLineDTO?.add(orderLine)
         order.value?.totalPrice?.plus(product.price * amount)?.also {
-            order.value?.totalPrice = truncateToTwoDecimalsMath(it) // Truncar a 2 decimales
+            order.value?.totalPrice = truncateToTwoDecimalsMath(it)
         }
 
         totalProducts.value = totalProducts.value?.plus(amount)
