@@ -21,7 +21,7 @@
 
 ## 📄 Documentation
 
-- Explore the technical implementation through the JavaDoc documentation: [KDoc](https://linktodocumentation)
+- Explore the technical implementation through the JavaDoc documentation: [KDoc](https://daniandries.github.io/Pizzeria-Frontend/)
 
 ## 📂 Related Projects
 
