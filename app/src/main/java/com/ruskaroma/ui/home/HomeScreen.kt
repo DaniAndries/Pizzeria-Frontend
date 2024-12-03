@@ -408,7 +408,7 @@ fun SimpleAlertDialog(
         AlertDialog(
             onDismissRequest = {
                 showDialog = false
-                onDismiss(false) // Llamada a onDismiss al cerrar el diálogo
+                onDismiss(false)
             },
             title = {
                 Text(text = "Cierre de sesión")
@@ -419,7 +419,7 @@ fun SimpleAlertDialog(
             confirmButton = {
                 TextButton(onClick = {
                     showDialog = false
-                    onConfirm(true) // Llamada a onConfirm al confirmar la acción
+                    onConfirm(true)
                 }) {
                     Text("Sí")
                 }
@@ -427,7 +427,7 @@ fun SimpleAlertDialog(
             dismissButton = {
                 TextButton(onClick = {
                     showDialog = false
-                    onDismiss(false) // Llamada a onDismiss al cancelar
+                    onDismiss(false)
                 }) {
                     Text("No")
                 }
