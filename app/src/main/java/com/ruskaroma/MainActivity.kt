@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             RuskaRomaTheme {
-                val navController = rememberNavController()
+                val navController = rememberNavController() 
                 AppNavigation(navController = navController)
             }
         }
