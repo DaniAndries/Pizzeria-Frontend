@@ -1,9 +1,6 @@
-import org.jetbrains.dokka.DokkaConfiguration.Visibility
 import org.jetbrains.dokka.gradle.DokkaTask
-import org.jetbrains.dokka.Platform
 import org.jetbrains.dokka.base.DokkaBase
 import org.jetbrains.dokka.base.DokkaBaseConfiguration
-import java.net.URL
 
 plugins {
     alias(libs.plugins.android.application)
@@ -13,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.ruskaroma"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.ruskaroma"

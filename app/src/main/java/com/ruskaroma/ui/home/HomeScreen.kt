@@ -1,5 +1,6 @@
 package com.ruskaroma.ui.home
 
+import android.annotation.SuppressLint
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -27,7 +28,6 @@ import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
-import androidx.compose.material3.Button
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -36,9 +36,11 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -57,11 +59,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.ruskaroma.R
 import com.ruskaroma.data.model.MEAT_TYPE
 import com.ruskaroma.data.model.ProductDTO
 import com.ruskaroma.data.model.SIZE
 import com.ruskaroma.data.model.TYPE
+import com.ruskaroma.navigator.AppNavigation
 import com.ruskaroma.ui.theme.RuskaRomaTheme
 
 /**
@@ -70,21 +74,28 @@ import com.ruskaroma.ui.theme.RuskaRomaTheme
  *
  * @param viewModel the ViewModel containing the logic and state for the home screen.
  */
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun HomeScreen(navController: NavController, viewModel: HomeViewModel) {
     viewModel.generateList()
-    val productList by viewModel.productList.observeAsState()
     val totalProducts by viewModel.totalProducts.observeAsState()
 
+    Scaffold(topBar = { TopBar(totalProducts) }, content = { Content(viewModel) })
+}
+
+@Composable
+fun Content(viewModel: HomeViewModel) {
+    val productList by viewModel.productList.observeAsState()
 
     LazyColumn(
         Modifier
             .fillMaxSize()
+            .padding(top = 65.dp)
             .background(color = Color(0xD081555C)),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         item {
-            TopBar(totalProducts)
+
         }
         productList?.let { list ->
             item {
@@ -98,12 +109,14 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel) {
             item {
                 LazyRow {
                     items(list.filter { it.type == TYPE.PIZZA }) { product ->
-                        ProductCard(product,
-                            onAddCart = { amount, product -> viewModel.onAddCart(amount, product) })
+                        ProductCard(product, onAddCart = { amount, product ->
+                            viewModel.onAddCart(
+                                amount, product
+                            )
+                        })
                     }
                 }
             }
-
             item {
                 Text(
                     "Pasta",
@@ -115,8 +128,11 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel) {
             item {
                 LazyRow {
                     items(list.filter { it.type == TYPE.PASTA }) { product ->
-                        ProductCard(product,
-                            onAddCart = { amount, product -> viewModel.onAddCart(amount, product) })
+                        ProductCard(product, onAddCart = { amount, product ->
+                            viewModel.onAddCart(
+                                amount, product
+                            )
+                        })
                     }
                 }
             }
@@ -132,8 +148,11 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel) {
             item {
                 LazyRow {
                     items(list.filter { it.type == TYPE.KEBAB }) { product ->
-                        ProductCard(product,
-                            onAddCart = { amount, product -> viewModel.onAddCart(amount, product) })
+                        ProductCard(product, onAddCart = { amount, product ->
+                            viewModel.onAddCart(
+                                amount, product
+                            )
+                        })
                     }
                 }
             }
@@ -149,14 +168,18 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel) {
             item {
                 LazyRow {
                     items(list.filter { it.type == TYPE.DRINK }) { product ->
-                        ProductCard(product,
-                            onAddCart = { amount, product -> viewModel.onAddCart(amount, product) })
+                        ProductCard(product, onAddCart = { amount, product ->
+                            viewModel.onAddCart(
+                                amount, product
+                            )
+                        })
                     }
                 }
             }
         }
     }
 }
+
 
 /**
  * Displays the top bar with the app title and a shopping cart icon that shows
@@ -202,7 +225,7 @@ fun TopBar(totalProducts: Int?) {
                 )
             }
         }
-    }, colors = TopAppBarDefaults.smallTopAppBarColors(
+    }, colors = TopAppBarDefaults.topAppBarColors(
         containerColor = Color(0xFF6E1B3A),
         titleContentColor = Color(0xFFDAD0D3),
         actionIconContentColor = Color(0xFFDAD0D3)
@@ -210,14 +233,11 @@ fun TopBar(totalProducts: Int?) {
     )
 
     if (showDialog) {
-        SimpleAlertDialog(
-            onConfirm = {
-                showDialog = false
-            },
-            onDismiss = {
-                showDialog = false
-            }
-        )
+        SimpleAlertDialog(onConfirm = {
+            showDialog = false
+        }, onDismiss = {
+            showDialog = false
+        })
     }
 }
 
@@ -400,38 +420,40 @@ fun SetDropdownMenus(
 
 @Composable
 fun SimpleAlertDialog(
-    onConfirm: (Boolean) -> Unit,
-    onDismiss: (Boolean) -> Unit
+    onConfirm: (Boolean) -> Unit, onDismiss: (Boolean) -> Unit
 ) {
     var showDialog by remember { mutableStateOf(true) }
     if (showDialog) {
-        AlertDialog(
-            onDismissRequest = {
+        AlertDialog(onDismissRequest = {
+            showDialog = false
+            onDismiss(false)
+        }, title = {
+            Text(text = "Cierre de sesión")
+        }, text = {
+            Text("¿Estás seguro de que quieres cerrar sesión?")
+        }, confirmButton = {
+            TextButton(onClick = {
+                showDialog = false
+                onConfirm(true)
+            }) {
+                Text("Sí")
+            }
+        }, dismissButton = {
+            TextButton(onClick = {
                 showDialog = false
                 onDismiss(false)
-            },
-            title = {
-                Text(text = "Cierre de sesión")
-            },
-            text = {
-                Text("¿Estás seguro de que quieres cerrar sesión?")
-            },
-            confirmButton = {
-                TextButton(onClick = {
-                    showDialog = false
-                    onConfirm(true)
-                }) {
-                    Text("Sí")
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = {
-                    showDialog = false
-                    onDismiss(false)
-                }) {
-                    Text("No")
-                }
+            }) {
+                Text("No")
             }
-        )
+        })
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    RuskaRomaTheme {
+        val navController = rememberNavController()
+        AppNavigation(navController = navController)
     }
 }

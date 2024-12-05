@@ -1,19 +1,19 @@
 [versions]
-agp = "8.6.0"
+agp = "8.6.1"
 dokkaBase = "1.9.20"
 dokkaGradlePlugin = "1.9.20"
 kotlin = "1.9.0"
-coreKtx = "1.13.1"
+coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
-lifecycleRuntimeKtx = "2.8.6"
+lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.9.3"
-composeBom = "2024.04.01"
+composeBom = "2024.11.00"
 mathjaxPlugin = "1.9.20"
 navigationCompose = "2.8.4"
-runtimeLivedata = "1.7.4"
-uiTextGoogleFonts = "1.7.4"
+runtimeLivedata = "1.7.5"
+uiTextGoogleFonts = "1.7.5"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
