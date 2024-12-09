@@ -29,6 +29,8 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.DrawerState
+import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ElevatedCard
@@ -36,18 +38,22 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalDrawerSheet
+import androidx.compose.material3.ModalNavigationDrawer
+import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -66,7 +72,11 @@ import com.ruskaroma.data.model.ProductDTO
 import com.ruskaroma.data.model.SIZE
 import com.ruskaroma.data.model.TYPE
 import com.ruskaroma.navigator.AppNavigation
+import com.ruskaroma.navigator.Screen
+import com.ruskaroma.navigator.Screen.Home.screens
 import com.ruskaroma.ui.theme.RuskaRomaTheme
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 /**
  * Displays the home screen of the app, which contains a list of products
@@ -78,10 +88,104 @@ import com.ruskaroma.ui.theme.RuskaRomaTheme
 @Composable
 fun HomeScreen(navController: NavController, viewModel: HomeViewModel) {
     viewModel.generateList()
+    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+    val scope = rememberCoroutineScope()
     val totalProducts by viewModel.totalProducts.observeAsState()
-
-    Scaffold(topBar = { TopBar(totalProducts) }, content = { Content(viewModel) })
+    ModalNavigationDrawer(drawerState = drawerState, drawerContent = {
+        Drawer(navController, drawerState, scope, screens)
+    }) {
+        Scaffold(topBar = {
+            TopBar(totalProducts, onMenuClick = {
+                scope.launch { drawerState.open() }
+            })
+        }, content = { Content(viewModel) })
+    }
 }
+
+@Composable
+fun Drawer(
+    navController: NavController,
+    drawerState: DrawerState,
+    scope: CoroutineScope,
+    items: List<Screen>
+) {
+    ModalDrawerSheet(modifier = Modifier.width(250.dp)) {
+        Column {
+            items.forEach { screen ->
+                DrawerItem(navController, screen)
+                scope.launch { drawerState.close() }
+            }
+        }
+    }
+}
+
+@Composable
+fun DrawerItem(navController: NavController, screen: Screen) {
+    NavigationDrawerItem(label = { Text(screen.route) }, selected = false, onClick = {
+        navController.navigate(screen.route) { launchSingleTop = true }
+    })
+}
+
+/**
+ * Displays the top bar with the app title and a shopping cart icon that shows
+ * the total number of products in the cart.
+ *
+ * @param totalProducts the total number of products in the cart (nullable).
+ */
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TopBar(totalProducts: Int?, onMenuClick: () -> Unit) {
+    var showDialog by remember { mutableStateOf(false) }
+
+    TopAppBar(title = {
+        Text(
+            text = "Ruska Roma",
+            style = MaterialTheme.typography.titleLarge,
+        )
+    }, navigationIcon = {
+        IconButton(onClick = { onMenuClick() }) { //showDialog = true
+            Icon(
+                imageVector = Icons.Default.Menu,
+                contentDescription = "Menu",
+                tint = Color(0xFFDAD0D3)
+            )
+        }
+    }, actions = {
+        BadgedBox(badge = {
+            Badge(
+                containerColor = MaterialTheme.colorScheme.secondary,
+                contentColor = MaterialTheme.colorScheme.onSecondary
+            ) {
+                Text(
+                    text = totalProducts?.toString() ?: "0",
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+            }
+        }) {
+            IconButton(onClick = { /* Acción del carrito */ }) {
+                Icon(
+                    imageVector = Icons.Default.ShoppingCart,
+                    contentDescription = "Carrito",
+                    tint = Color(0xFFDAD0D3)
+                )
+            }
+        }
+    }, colors = TopAppBarDefaults.topAppBarColors(
+        containerColor = Color(0xFF6E1B3A),
+        titleContentColor = Color(0xFFDAD0D3),
+        actionIconContentColor = Color(0xFFDAD0D3)
+    )
+    )
+
+    if (showDialog) {
+        SimpleAlertDialog(onConfirm = {
+            showDialog = false
+        }, onDismiss = {
+            showDialog = false
+        })
+    }
+}
+
 
 @Composable
 fun Content(viewModel: HomeViewModel) {
@@ -177,67 +281,6 @@ fun Content(viewModel: HomeViewModel) {
                 }
             }
         }
-    }
-}
-
-
-/**
- * Displays the top bar with the app title and a shopping cart icon that shows
- * the total number of products in the cart.
- *
- * @param totalProducts the total number of products in the cart (nullable).
- */
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun TopBar(totalProducts: Int?) {
-    var showDialog by remember { mutableStateOf(false) }
-
-    TopAppBar(title = {
-        Text(
-            text = "Ruska Roma",
-            style = MaterialTheme.typography.titleLarge,
-        )
-    }, navigationIcon = {
-        IconButton(onClick = { showDialog = true }) {
-            Icon(
-                imageVector = Icons.Default.Menu,
-                contentDescription = "Menu",
-                tint = Color(0xFFDAD0D3)
-            )
-        }
-    }, actions = {
-        BadgedBox(badge = {
-            Badge(
-                containerColor = MaterialTheme.colorScheme.secondary,
-                contentColor = MaterialTheme.colorScheme.onSecondary
-            ) {
-                Text(
-                    text = totalProducts?.toString() ?: "0",
-                    style = MaterialTheme.typography.bodyMedium,
-                )
-            }
-        }) {
-            IconButton(onClick = { /* Acción del carrito */ }) {
-                Icon(
-                    imageVector = Icons.Default.ShoppingCart,
-                    contentDescription = "Carrito",
-                    tint = Color(0xFFDAD0D3)
-                )
-            }
-        }
-    }, colors = TopAppBarDefaults.topAppBarColors(
-        containerColor = Color(0xFF6E1B3A),
-        titleContentColor = Color(0xFFDAD0D3),
-        actionIconContentColor = Color(0xFFDAD0D3)
-    )
-    )
-
-    if (showDialog) {
-        SimpleAlertDialog(onConfirm = {
-            showDialog = false
-        }, onDismiss = {
-            showDialog = false
-        })
     }
 }
 
