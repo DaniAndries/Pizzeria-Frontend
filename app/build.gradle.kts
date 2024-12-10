@@ -120,9 +120,13 @@ tasks.withType<DokkaTask>().configureEach {
 
 
 dependencies {
-    // Is applied universally
     dokkaPlugin(libs.mathjax.plugin)
 
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.media3.common.ktx)
+    implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

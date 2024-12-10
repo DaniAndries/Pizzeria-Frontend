@@ -73,7 +73,7 @@ import com.ruskaroma.data.model.SIZE
 import com.ruskaroma.data.model.TYPE
 import com.ruskaroma.navigator.AppNavigation
 import com.ruskaroma.navigator.Screen
-import com.ruskaroma.navigator.Screen.Home.screens
+import com.ruskaroma.navigator.Screen.Companion.screens
 import com.ruskaroma.ui.theme.RuskaRomaTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -110,18 +110,34 @@ fun Drawer(
     items: List<Screen>
 ) {
     ModalDrawerSheet(modifier = Modifier.width(250.dp)) {
+        var showDialog by remember { mutableStateOf(false) }
         Column {
-            items.forEach { screen ->
+            items.filterNotNull().forEach { screen ->
                 DrawerItem(navController, screen)
                 scope.launch { drawerState.close() }
             }
+            NavigationDrawerItem(label = { Text("Log Out") }, selected = false, onClick = {
+                showDialog = true
+            })
+        }
+
+        if (showDialog) {
+            SimpleAlertDialog(onConfirm = {
+                showDialog = false
+            }, onDismiss = {
+                showDialog = false
+            })
         }
     }
 }
 
 @Composable
 fun DrawerItem(navController: NavController, screen: Screen) {
-    NavigationDrawerItem(label = { Text(screen.route) }, selected = false, onClick = {
+    NavigationDrawerItem(label = {
+        Text(screen.route.replaceFirstChar {
+            if (it.isLowerCase()) it.titlecase() else it.toString()
+        })
+    }, selected = false, onClick = {
         navController.navigate(screen.route) { launchSingleTop = true }
     })
 }
@@ -135,7 +151,7 @@ fun DrawerItem(navController: NavController, screen: Screen) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(totalProducts: Int?, onMenuClick: () -> Unit) {
-    var showDialog by remember { mutableStateOf(false) }
+
 
     TopAppBar(title = {
         Text(
@@ -143,7 +159,7 @@ fun TopBar(totalProducts: Int?, onMenuClick: () -> Unit) {
             style = MaterialTheme.typography.titleLarge,
         )
     }, navigationIcon = {
-        IconButton(onClick = { onMenuClick() }) { //showDialog = true
+        IconButton(onClick = { onMenuClick() }) { //
             Icon(
                 imageVector = Icons.Default.Menu,
                 contentDescription = "Menu",
@@ -176,14 +192,6 @@ fun TopBar(totalProducts: Int?, onMenuClick: () -> Unit) {
         actionIconContentColor = Color(0xFFDAD0D3)
     )
     )
-
-    if (showDialog) {
-        SimpleAlertDialog(onConfirm = {
-            showDialog = false
-        }, onDismiss = {
-            showDialog = false
-        })
-    }
 }
 
 
@@ -479,7 +487,7 @@ fun SimpleAlertDialog(
                 showDialog = false
                 onConfirm(true)
             }) {
-                Text("Sí")
+                Text("Yes")
             }
         }, dismissButton = {
             TextButton(onClick = {

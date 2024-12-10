@@ -2,6 +2,7 @@ package com.ruskaroma.ui.home
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.ruskaroma.data.model.IngredientDTO
 import com.ruskaroma.data.model.ORDER_STATUS
 import com.ruskaroma.data.model.OrderDTO
@@ -16,7 +17,7 @@ import java.util.Locale
 /**
  * ViewModel responsible for managing the state and business logic of the Home screen.
  */
-class HomeViewModel {
+class HomeViewModel : ViewModel() {
 
     /** A live data object holding the list of products available on the home screen. */
     val productList = MutableLiveData<List<ProductDTO>>()

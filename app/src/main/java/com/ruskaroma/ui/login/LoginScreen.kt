@@ -120,7 +120,7 @@ fun LoginForm(
                 containerColor = MaterialTheme.colorScheme.primary
             )
         ) { Text("Login") }
-        Row(){
+        Row() {
             Text("Don't have an account? ")
             Text(
                 color = MaterialTheme.colorScheme.primary,
@@ -136,7 +136,7 @@ fun LoginForm(
                             end = Offset(size.width, verticalOffset)
                         )
                     }
-                    .clickable{
+                    .clickable {
                         navController.navigate(Screen.Register.route)
                     },
                 text = "Sing Up Now"
@@ -144,6 +144,7 @@ fun LoginForm(
         }
     }
 }
+
 
 @Preview(showBackground = true)
 @Composable

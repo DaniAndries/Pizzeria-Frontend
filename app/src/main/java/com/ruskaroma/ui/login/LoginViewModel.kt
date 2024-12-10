@@ -2,17 +2,22 @@ package com.ruskaroma.ui.login
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.ruskaroma.data.model.LoginDTO
 import com.ruskaroma.navigator.Screen
 import com.ruskaroma.ui.register.ErrorMessage
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 /**
  * ViewModel class responsible for managing login data and validation.
  * It holds the state for the login form, including email, password, error messages,
  * and the state of the register button.
  */
-class LoginViewModel {
+class LoginViewModel : ViewModel() {
     val buttonRegisterState = MutableLiveData(false)
     var login = MutableLiveData<LoginDTO>()
     val errorMessage = MutableLiveData<ErrorMessage>()
