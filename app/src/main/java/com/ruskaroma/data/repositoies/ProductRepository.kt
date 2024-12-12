@@ -1,5 +1,7 @@
 package com.ruskaroma.data.repositoies
 
-class ProductRepository {
+import com.ruskaroma.data.network.ProductApiService
+
+class ProductRepository (private val apiService: ProductApiService){
 
 }
