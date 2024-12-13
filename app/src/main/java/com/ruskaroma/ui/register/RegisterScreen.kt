@@ -139,7 +139,7 @@ fun RegisterForm(
 
         Button(
             enabled = buttonRegisterState,
-            onClick = { viewModel.onRegisterClick(navController) },
+            onClick = { viewModel.onRegisterClick() },
             modifier = Modifier
                 .width(300.dp)
                 .size(85.dp)

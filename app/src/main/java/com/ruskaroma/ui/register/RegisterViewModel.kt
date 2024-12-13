@@ -3,15 +3,20 @@ package com.ruskaroma.ui.register
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.ruskaroma.data.model.ClientDTO
+import com.ruskaroma.data.repositoies.ClientRepository
 import com.ruskaroma.navigator.Screen
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * ViewModel class that handles the state and business logic for the user registration process.
  * It stores the client data, error messages, and manages the register button state.
  */
-class RegisterViewModel : ViewModel() {
+class RegisterViewModel (private val clientRepository: ClientRepository): ViewModel() {
     /**
      * LiveData that holds the state of the register button.
      * It determines whether the register button is enabled or disabled based on the input form.
@@ -55,8 +60,23 @@ class RegisterViewModel : ViewModel() {
      * Function called when the user clicks the register button.
      * Currently logs the client data to the console.
      */
-    fun onRegisterClick(navController: NavController) {
-        Log.d("Login", "${client.value}")
-        navController.navigate(Screen.Login.route)
+    fun onRegisterClick() {
+        val clienteActual = client.value
+        if (clienteActual != null) {
+            viewModelScope.launch {
+                val result =
+                    clientRepository.registerClient(clienteActual)
+                withContext(Dispatchers.Main) {
+                    when (result.isSuccess) {
+                        true -> {
+                            client.value = result.getOrThrow()
+                        }
+                        false -> {
+                            Log.d("REGISTRO", "Error:$result")
+                        }
+                    }
+                }
+            }
+        }
     }
 }
