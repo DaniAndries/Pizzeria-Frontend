@@ -9,7 +9,7 @@ package com.ruskaroma.data.model
  * @param id Unique identifier for the client. Default value is 0.
  * @param dni The client's DNI (identity number). This is a unique identifier for the client, often used in Latin American countries.
  * @param name The name of the client.
- * @param direction The address or direction where the client resides.
+ * @param address The address or direction where the client resides.
  * @param phone The phone number of the client.
  * @param mail The email address of the client.
  * @param password The password used by the client to authenticate into the system.
@@ -38,7 +38,7 @@ data class ClientDTO(
      * The client's address.
      * It represents the physical location where the client resides.
      */
-    var direction: String = "",
+    var address: String = "",
 
     /**
      * The client's phone number.

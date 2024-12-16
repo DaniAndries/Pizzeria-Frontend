@@ -9,12 +9,12 @@ import retrofit2.http.POST
 import retrofit2.http.PUT
 
 interface ClientApiService {
-    @POST("/clientes/registro")
-    suspend fun registerClient(@Body cliente: ClientDTO): ClientDTO
-    @POST("/clientes/login")
+    @POST("/clients/register")
+    suspend fun registerClient(@Body client: ClientDTO): ClientDTO
+    @POST("/clients/login")
     suspend fun loginCliente(@Body loginDTO: LoginDTO): ClientDTO
-    @PUT("/clientes/actualizar")
-    suspend fun updateCliente(@Body cliente: ClientDTO): ClientDTO
-    @GET("/clientes")
+    @PUT("/clients/update")
+    suspend fun updateCliente(@Body client: ClientDTO): ClientDTO
+    @GET("/clients")
     suspend fun getUsers(): Response<List<ClientDTO>>
 }

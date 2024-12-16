@@ -4,10 +4,8 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavController
 import com.ruskaroma.data.model.ClientDTO
 import com.ruskaroma.data.repositoies.ClientRepository
-import com.ruskaroma.navigator.Screen
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -53,7 +51,7 @@ class RegisterViewModel (private val clientRepository: ClientRepository): ViewMo
 
         // Enable register button if all fields are filled in correctly
         buttonRegisterState.value =
-            (newCliente.dni.isNotBlank() && newCliente.name.isNotBlank() && newCliente.direction.isNotBlank() && newCliente.phone.isNotBlank() && newCliente.mail.isNotBlank() && newCliente.password.isNotBlank())
+            (newCliente.dni.isNotBlank() && newCliente.name.isNotBlank() && newCliente.address.isNotBlank() && newCliente.phone.isNotBlank() && newCliente.mail.isNotBlank() && newCliente.password.isNotBlank())
     }
 
     /**
@@ -61,18 +59,18 @@ class RegisterViewModel (private val clientRepository: ClientRepository): ViewMo
      * Currently logs the client data to the console.
      */
     fun onRegisterClick() {
-        val clienteActual = client.value
-        if (clienteActual != null) {
+        val actualClient = client.value
+        if (actualClient != null) {
             viewModelScope.launch {
                 val result =
-                    clientRepository.registerClient(clienteActual)
+                    clientRepository.registerClient(actualClient)
                 withContext(Dispatchers.Main) {
                     when (result.isSuccess) {
                         true -> {
                             client.value = result.getOrThrow()
                         }
                         false -> {
-                            Log.d("REGISTRO", "Error:$result")
+                            Log.d("LOG", "Error:$result")
                         }
                     }
                 }

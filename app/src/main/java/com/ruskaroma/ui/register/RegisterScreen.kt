@@ -112,9 +112,9 @@ fun RegisterForm(
             value = client.dni
         )
         FormFields(
-            onValueChange = { viewModel.onClientChange(client.copy(direction = it)) },
+            onValueChange = { viewModel.onClientChange(client.copy(address = it)) },
             text = "Direction",
-            value = client.direction
+            value = client.address
         )
         FormFields(
             onValueChange = { viewModel.onClientChange(client.copy(phone = it)) },
