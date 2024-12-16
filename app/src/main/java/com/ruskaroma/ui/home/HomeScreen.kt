@@ -87,7 +87,6 @@ import kotlinx.coroutines.launch
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun HomeScreen(navController: NavController, viewModel: HomeViewModel) {
-    viewModel.generateList()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     val totalProducts by viewModel.totalProducts.observeAsState()

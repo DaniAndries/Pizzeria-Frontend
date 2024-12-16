@@ -12,7 +12,7 @@ interface ClientApiService {
     @POST("/clients/register")
     suspend fun registerClient(@Body client: ClientDTO): ClientDTO
     @POST("/clients/login")
-    suspend fun loginCliente(@Body loginDTO: LoginDTO): ClientDTO
+    suspend fun loginCliente(@Body loginDTO: LoginDTO): LoginDTO
     @PUT("/clients/update")
     suspend fun updateCliente(@Body client: ClientDTO): ClientDTO
     @GET("/clients")

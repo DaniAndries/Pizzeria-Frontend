@@ -17,7 +17,7 @@ import com.ruskaroma.ui.register.RegisterViewModel
 @Composable
 fun AppNavigation(navController: NavHostController) {
     val clientRepository = ClientRepository(RetrofitInstance.clientApi)
-    //val productRepository = ProductRepository(RetrofitInstance.productApi)
+    val productRepository = ProductRepository(RetrofitInstance.productApi)
 
 
     NavHost(
@@ -25,7 +25,7 @@ fun AppNavigation(navController: NavHostController) {
     ) {
         composable(Screen.Login.route) {
             LoginScreen(
-                viewModel = LoginViewModel(), navController = navController
+                viewModel = LoginViewModel(clientRepository), navController = navController
             )
         }
         composable(Screen.Register.route) {
@@ -35,7 +35,7 @@ fun AppNavigation(navController: NavHostController) {
         }
         composable(Screen.Home.route) {
             HomeScreen(
-                viewModel = HomeViewModel(), navController = navController
+                viewModel = HomeViewModel(productRepository), navController = navController
             )
         }
     }

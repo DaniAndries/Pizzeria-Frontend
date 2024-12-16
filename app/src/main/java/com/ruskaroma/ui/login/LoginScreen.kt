@@ -1,5 +1,7 @@
 package com.ruskaroma.ui.login
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -24,6 +26,7 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -51,7 +54,8 @@ fun LoginScreen(navController: NavController, viewModel: LoginViewModel) {
     val buttonRegisterState: Boolean by viewModel.buttonRegisterState.observeAsState(false)
     val login: LoginDTO by viewModel.login.observeAsState(LoginDTO())
     val errorMessage: ErrorMessage by viewModel.errorMessage.observeAsState(ErrorMessage())
-    LoginForm(navController, buttonRegisterState, viewModel, login, errorMessage)
+    val context = LocalContext.current
+    LoginForm(navController, buttonRegisterState, viewModel, login, errorMessage, context)
 }
 
 /**
@@ -68,7 +72,8 @@ fun LoginForm(
     buttonState: Boolean,
     viewModel: LoginViewModel,
     login: LoginDTO,
-    errorMessage: ErrorMessage
+    errorMessage: ErrorMessage,
+    context : Context
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally
@@ -90,10 +95,10 @@ fun LoginForm(
     ) {
         FormFields(
             error = errorMessage.email,
-            onValueChange = { viewModel.onClientChange(login.copy(email = it)) },
+            onValueChange = { viewModel.onClientChange(login.copy(mail = it)) },
             text = "Email",
             keyboard = KeyboardType.Email,
-            value = login.email
+            value = login.mail
         )
         PasswordField(
             error = errorMessage.passwrd,
@@ -110,7 +115,24 @@ fun LoginForm(
     ) {
         Button(
             enabled = buttonState,
-            onClick = { viewModel.onLoginClick(navController) },
+            onClick = {
+                viewModel.onLoginClick { success ->
+                    if (success) {
+                        Toast.makeText(
+                            context,
+                            "Login correct",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        navController.navigate(Screen.Home.route)
+                    } else {
+                        Toast.makeText(
+                            context,
+                            "Wrong user or password",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            },
             modifier = Modifier
                 .width(300.dp)
                 .size(90.dp)

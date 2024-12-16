@@ -4,7 +4,7 @@ package com.ruskaroma.data.model
  * Data class representing the login credentials for a user.
  * This class contains the user's email and password used for authentication in the system.
  *
- * @param email The email address of the user. It is used to identify the user during login.
+ * @param mail The email address of the user. It is used to identify the user during login.
  * @param password The password associated with the user's account, used for authentication.
  */
 data class LoginDTO(
@@ -12,7 +12,7 @@ data class LoginDTO(
      * The email address of the user.
      * This value is used to uniquely identify the user and is typically required for login.
      */
-    val email: String = "",
+    val mail: String = "",
 
     /**
      * The password associated with the user's account.
