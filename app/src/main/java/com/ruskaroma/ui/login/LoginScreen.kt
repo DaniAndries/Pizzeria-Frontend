@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -51,11 +53,12 @@ import com.ruskaroma.ui.theme.RuskaRomaTheme
  */
 @Composable
 fun LoginScreen(navController: NavController, viewModel: LoginViewModel) {
+    val loading: Boolean by viewModel.loading.observeAsState(false)
     val buttonRegisterState: Boolean by viewModel.buttonRegisterState.observeAsState(false)
     val login: LoginDTO by viewModel.login.observeAsState(LoginDTO())
     val errorMessage: ErrorMessage by viewModel.errorMessage.observeAsState(ErrorMessage())
     val context = LocalContext.current
-    LoginForm(navController, buttonRegisterState, viewModel, login, errorMessage, context)
+    LoginForm(navController, buttonRegisterState, viewModel, login, errorMessage, context, loading)
 }
 
 /**
@@ -73,8 +76,16 @@ fun LoginForm(
     viewModel: LoginViewModel,
     login: LoginDTO,
     errorMessage: ErrorMessage,
-    context : Context
+    context : Context,
+    loading: Boolean
 ) {
+
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        if (loading) {
+            CircularProgressIndicator(modifier = Modifier.padding(50.dp))
+        }
+    }
+    
     Column(
         modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally
     ) {

@@ -17,6 +17,7 @@ import kotlinx.coroutines.withContext
  * and the state of the register button.
  */
 class LoginViewModel (private val clientRepository: ClientRepository): ViewModel() {
+    val loading = MutableLiveData(false)
     val buttonRegisterState = MutableLiveData(false)
     var login = MutableLiveData<LoginDTO>()
     val errorMessage = MutableLiveData<ErrorMessage>()
@@ -45,6 +46,7 @@ class LoginViewModel (private val clientRepository: ClientRepository): ViewModel
      * For now, it just logs the current login data to the debug log.
      */
     fun onLoginClick(callback: (Boolean) -> Unit){
+        loading.value = true
         val actualClient = login.value
         if (actualClient != null) {
             viewModelScope.launch {
@@ -54,10 +56,12 @@ class LoginViewModel (private val clientRepository: ClientRepository): ViewModel
                         true -> {
                             login.value = result.getOrThrow()
                             callback(true)
+                            loading.value=false
                         }
                         false -> {
                             Log.d("Login", "Error:$result")
                             callback(false)
+                            loading.value=false
                         }
                     }
                 }
