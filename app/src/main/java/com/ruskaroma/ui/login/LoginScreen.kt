@@ -178,7 +178,6 @@ fun LoginForm(
     }
 }
 
-
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {

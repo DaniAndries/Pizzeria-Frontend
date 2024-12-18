@@ -58,7 +58,7 @@ class RegisterViewModel (private val clientRepository: ClientRepository): ViewMo
      * Function called when the user clicks the register button.
      * Currently logs the client data to the console.
      */
-    fun onRegisterClick() {
+    fun onRegisterClick(callback: (Boolean) -> Unit) {
         val actualClient = client.value
         if (actualClient != null) {
             viewModelScope.launch {
@@ -68,9 +68,11 @@ class RegisterViewModel (private val clientRepository: ClientRepository): ViewMo
                     when (result.isSuccess) {
                         true -> {
                             client.value = result.getOrThrow()
+                            callback(true)
                         }
                         false -> {
                             Log.d("LOG", "Error:$result")
+                            callback(false)
                         }
                     }
                 }

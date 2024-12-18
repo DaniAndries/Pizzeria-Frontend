@@ -1,5 +1,7 @@
 package com.ruskaroma.ui.register
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -36,6 +38,7 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -60,12 +63,13 @@ import com.ruskaroma.ui.theme.RuskaRomaTheme
  */
 @Composable
 fun RegisterScreen(navController: NavController, viewModel: RegisterViewModel) {
+    val context = LocalContext.current
     val buttonRegisterState: Boolean by viewModel.buttonRegisterState.observeAsState(false)
     val client: ClientDTO by viewModel.client.observeAsState(ClientDTO())
     val errorMessage: ErrorMessage by viewModel.errorMessage.observeAsState(ErrorMessage())
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         item {
-            RegisterForm(navController, buttonRegisterState, viewModel, client, errorMessage)
+            RegisterForm(navController, buttonRegisterState, viewModel, client, errorMessage, context)
         }
     }
 }
@@ -85,7 +89,8 @@ fun RegisterForm(
     buttonRegisterState: Boolean,
     viewModel: RegisterViewModel,
     client: ClientDTO,
-    errorMessage: ErrorMessage
+    errorMessage: ErrorMessage,
+    context: Context
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
@@ -139,7 +144,23 @@ fun RegisterForm(
 
         Button(
             enabled = buttonRegisterState,
-            onClick = { viewModel.onRegisterClick() },
+            onClick = { viewModel.onRegisterClick { success ->
+                if (success) {
+                    Toast.makeText(
+                        context,
+                        "Register correct",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    navController.navigate(Screen.Login.route)
+                } else {
+                    Toast.makeText(
+                        context,
+                        "The user already exist",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    }
+                }
+            },
             modifier = Modifier
                 .width(300.dp)
                 .size(85.dp)
